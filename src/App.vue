@@ -1,27 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <BlockList :blocks="blocks"/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import BlockList from "@/components/BlockList.vue";
+import MtgDataService from "@/services/MtgDataService";
+import Block from "@/types/Block"
+import ResponseData from "@/types/ResponseData";
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld
-  }
+
+  components: {BlockList},
+
+  data() {
+    return {
+      blocks: [] as Block[]
+    }
+  },
+
+  methods: {
+    retrieveBlocks() {
+      MtgDataService.getAllBlocks()
+          .then((response: ResponseData) => {
+            this.blocks = response.data
+          })
+          .catch((reason: Error) => {
+            console.error(reason)
+          })
+    }
+  },
+
+  mounted() {
+    this.retrieveBlocks();
+  },
 });
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
