@@ -1,18 +1,19 @@
 import { createWebHistory, createRouter } from "vue-router";
 import { RouteRecordRaw } from "vue-router";
+import SetList from "@/components/SetList.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    alias: "/blocks",
-    name: "Blocks",
-    component: () => import("./components/BlockList.vue"),
-  },
+    name: "Set List",
+    alias: "/",
+    path: "/sets",
+    component: SetList
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;

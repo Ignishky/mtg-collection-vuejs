@@ -1,5 +1,7 @@
-import Block from "@/types/Block";
+import Set from "@/types/Set";
 
-export default interface ResponseData {
-  data: Block[];
+interface ResponseData {
+    data: Set[]
 }
+
+export default ResponseData
