@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import { RouteRecordRaw } from "vue-router";
 import SetList from "@/components/SetList.vue";
+import CardList from "@/components/CardList.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,6 +9,12 @@ const routes: Array<RouteRecordRaw> = [
     alias: "/",
     path: "/sets",
     component: SetList
+  },
+  {
+    name: "Card List",
+    path: "/sets/:setCode",
+    component: CardList,
+    props: true
   }
 ];
 

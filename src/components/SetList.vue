@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row row-cols-lg-6 g-2 g-lg-2">
       <div v-for="set in sets" v-bind:key="set.code">
-        <div class="border bg-light">
+        <div class="border bg-light" @click="handleClick(set.code)">
           <img :src="set.icon" :alt="set.code">
           <p>{{ set.name }}</p>
         </div>
@@ -32,6 +32,12 @@ export default defineComponent({
             }
         )
         .catch(error => console.error(error))
+  },
+
+  methods: {
+    handleClick(code: string) {
+      this.$router.push(`/sets/${code}`)
+    }
   }
 })
 </script>
