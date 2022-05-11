@@ -1,12 +1,8 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <span v-for="card in cards" v-bind:key="card.id">
-          <img :src="card.image" :alt="card.name">
-        </span>
-      </div>
-    </div>
+    <span v-for="card in cards" v-bind:key="card.id">
+      <CardDisplay :card="card"/>
+    </span>
   </div>
 </template>
 
@@ -14,10 +10,11 @@
 import { defineComponent } from "vue";
 import mtgDataService from "@/services/MtgDataService";
 import Card from "@/types/Card";
+import CardDisplay from "@/components/CardDisplay.vue";
 
 export default defineComponent({
   name: "CardList",
-
+  components: {CardDisplay},
   props: ['setCode'],
 
   data() {
@@ -41,11 +38,7 @@ export default defineComponent({
 .container {
   max-width: 1370px;
   margin: 10px 50px;
-}
-
-img {
-  height: 200px;
-  margin-top: 5px;
-  margin-right: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
