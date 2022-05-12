@@ -28,7 +28,7 @@ export default defineComponent({
   mounted() {
     mtgDataService.getAllSets()
         .then(response => {
-              this.sets = response.data
+              this.sets = response.data.sets
             }
         )
         .catch(error => console.error(error))

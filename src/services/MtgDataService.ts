@@ -1,10 +1,10 @@
 import http from "@/http-common";
-import ResponseSetsData from "@/types/ResponseSetsData";
+import SetsResponse from "@/types/SetsResponse";
 import ResponseCardsData from "@/types/ResponseCardsData";
 import ResponseCardData from "@/types/ResponseCardData";
 
 class MtgDataService {
-    getAllSets(): Promise<ResponseSetsData> {
+    getAllSets(): Promise<SetsResponse> {
         return http.get("/sets");
     }
 
