@@ -1,10 +1,10 @@
 import Set from "@/types/Set";
 
 interface SetsResponse {
-    data: SetData
+    data: SetsData
 }
 
-interface SetData {
+interface SetsData {
     sets: Set[]
 }
 
