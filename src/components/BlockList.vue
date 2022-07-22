@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="row row-cols-lg-6 g-2 g-lg-2">
-      <div v-for="set in sets" v-bind:key="set.code">
-        <div class="border bg-light" @click="handleClick(set.code)">
-          <img :src="set.icon" :alt="set.code">
-          <p>{{ set.name }}</p>
+      <div v-for="block in blocks" v-bind:key="block.code">
+        <div class="border bg-light" @click="handleClick(block.code)">
+          <img :src="block.icon" :alt="block.code">
+          <p>{{ block.name }}</p>
         </div>
       </div>
     </div>
@@ -17,19 +17,18 @@ import mtgDataService from '@/services/MtgDataService'
 import Set from "@/types/Set";
 
 export default defineComponent({
-  name: "SetList",
-  props: ['blockCode'],
+  name: "BlockList",
 
   data() {
     return {
-      sets: [] as Set[],
+      blocks: [] as Set[],
     }
   },
 
   mounted() {
-    mtgDataService.getSets(this.blockCode)
+    mtgDataService.getAllBlocks()
         .then(response => {
-              this.sets = response.data.sets
+              this.blocks = response.data.blocks
             }
         )
         .catch(error => console.error(error))
@@ -37,7 +36,7 @@ export default defineComponent({
 
   methods: {
     handleClick(code: string) {
-      this.$router.push(`/sets/${code}`)
+      this.$router.push(`/blocks/${code}`)
     }
   }
 })

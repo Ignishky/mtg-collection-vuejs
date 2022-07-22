@@ -1,14 +1,21 @@
 import { createWebHistory, createRouter } from "vue-router";
 import { RouteRecordRaw } from "vue-router";
+import BlockList from "@/components/BlockList.vue";
 import SetList from "@/components/SetList.vue";
 import CardList from "@/components/CardList.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    name: "Set List",
+    name: "Block List",
     alias: "/",
-    path: "/sets",
-    component: SetList
+    path: "/blocks",
+    component: BlockList
+  },
+  {
+    name: "Set List",
+    path: "/blocks/:blockCode",
+    component: SetList,
+    props: true
   },
   {
     name: "Card List",
