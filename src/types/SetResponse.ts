@@ -5,6 +5,7 @@ interface SetResponse {
 }
 
 interface SetData {
+    name: string,
     cards: Card[]
 }
 

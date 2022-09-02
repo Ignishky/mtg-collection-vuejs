@@ -1,4 +1,5 @@
 <template>
+  <h1>{{ setName }}</h1>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>
@@ -7,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import mtgDataService from "@/services/MtgDataService";
 import Card from "@/types/Card";
 import CardDisplay from "@/components/CardDisplay.vue";
@@ -19,6 +20,7 @@ export default defineComponent({
 
   data() {
     return {
+      setName: '',
       cards: [] as Card[],
     }
   },
@@ -26,6 +28,7 @@ export default defineComponent({
   mounted() {
     mtgDataService.getSetCards(this.setCode)
         .then(response => {
+              this.setName = response.data.name;
               this.cards = response.data.cards
             }
         )
@@ -35,6 +38,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+h1 {
+  text-align: center;
+}
+
 .container {
   max-width: 1370px;
   margin: 10px 50px;

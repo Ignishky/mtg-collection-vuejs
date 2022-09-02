@@ -1,11 +1,12 @@
 <template>
-  <div :class="{owned: card.isOwned && !card.isFoiled, foiled: card.isFoiled}">
-    <img :id="card.id" :src="card.image" :alt="card.name" @click="handleClick()"/>
+  <div>
+    <img :class="{owned: card.isOwned && !card.isFoiled, foiled: card.isFoiled}"
+         :id="card.id" :src="card.image" :alt="card.name" @click="handleClick()"/>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import {defineComponent, PropType} from "vue";
 import Card from "@/types/Card";
 import mtgDataService from "@/services/MtgDataService";
 
@@ -29,25 +30,16 @@ export default defineComponent({
 
   methods: {
     handleClick() {
-      this.clicks++
+      this.clicks++;
       if (this.clicks === 1) {
-        var self = this
-        this.timer = setTimeout(function () {
-          mtgDataService.addCardToCollection(self.card.id, false)
-          .then(value => {
-            console.log(value.data);
-            //self.card.isOwned = value.data[0].isOwned;
-          });
+        const self = this;
+        this.timer = setTimeout(() => {
+          mtgDataService.addCardToCollection(self.card.id, false);
           self.clicks = 0
         }, this.delay);
       } else {
         clearTimeout(this.timer);
-        mtgDataService.addCardToCollection(this.card.id, true)
-            .then(value => {
-             // this.card.isOwned = value.data[0].isOwned;
-              //this.card.isFoiled = value.data[0].isFoiled;
-            })
-        ;
+        mtgDataService.addCardToCollection(this.card.id, true);
         this.clicks = 0;
       }
     },
@@ -56,24 +48,18 @@ export default defineComponent({
 </script>
 
 <style scoped>
-div {
-  flex: 1 0 11%;
-}
-
 .owned {
-  border: 5px solid orange;
-  width: 150px;
+  background: #ffa500;
 }
 
 .foiled {
-  border: 5px solid crimson;
-  width: 150px;
+  background: #228b22;
 }
 
 img {
+  background: #ffffff;
+  padding: 5px;
   height: 200px;
-  margin-top: 5px;
-  margin-right: 5px;
   cursor: pointer;
 }
 </style>

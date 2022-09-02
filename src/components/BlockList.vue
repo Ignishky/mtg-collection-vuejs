@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent} from 'vue'
 import mtgDataService from '@/services/MtgDataService'
 import Set from "@/types/Set";
 
@@ -43,15 +43,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.container{
+.container {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 img {
   height: 50px;
   margin-top: -10px;
   margin-right: 10px;
 }
+
 .border {
   padding-left: 5px;
   height: 100px;
