@@ -2,6 +2,7 @@
   <div>
     <img :class="{owned: card.isOwned && !card.isFoiled, foiled: card.isFoiled}"
          :id="card.id" :src="card.image" :alt="card.name" @click="handleClick()"/>
+    <div style="text-align: center;">{{ card.price.eur }} / {{ card.price.eur_foil }}</div>
   </div>
 </template>
 
