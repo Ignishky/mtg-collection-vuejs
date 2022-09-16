@@ -2,7 +2,7 @@
   <div>
     <img :class="{owned: card.isOwned && !card.isFoiled, foiled: card.isFoiled}"
          :id="card.id" :src="card.image" :alt="card.name" @click="handleClick()"/>
-    <div style="text-align: center;">{{ card.price.eur }} / {{ card.price.eur_foil }}</div>
+    <div style="text-align: center;">{{ price }}</div>
   </div>
 </template>
 
@@ -27,6 +27,23 @@ export default defineComponent({
       type: Object as PropType<Card>,
       required: true
     }
+  },
+
+  computed: {
+    price() {
+      let price;
+      let cardPrice = this.card.price;
+      if (cardPrice.eur && cardPrice.eur_foil) {
+        price = `${cardPrice.eur} / ${cardPrice.eur_foil}`
+      } else if (cardPrice.eur) {
+        price = `${cardPrice.eur}`
+      } else if (cardPrice.eur_foil) {
+        price = `${cardPrice.eur_foil}`
+      } else {
+        price = '-'
+      }
+      return price;
+    },
   },
 
   methods: {
