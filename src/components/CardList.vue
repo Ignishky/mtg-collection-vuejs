@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ setName }}</h1>
+  <h1>{{ setName }} #cards : {{ nbOwnedCards }} ({{ nbOwnedFoiled }}) / {{ cards.length }}</h1>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>
@@ -22,6 +22,16 @@ export default defineComponent({
     return {
       setName: '',
       cards: [] as Card[],
+    }
+  },
+
+  computed: {
+    nbOwnedCards() {
+      return this.cards.filter(card => card.isOwned).length;
+    },
+
+    nbOwnedFoiled() {
+      return this.cards.filter(card => card.isFoiled).length;
     }
   },
 

@@ -30,17 +30,21 @@ export default defineComponent({
   },
 
   methods: {
-    handleClick() {
+    async handleClick() {
       this.clicks++;
       if (this.clicks === 1) {
         const self = this;
-        this.timer = setTimeout(() => {
-          mtgDataService.addCardToCollection(self.card.id, false);
+        this.timer = setTimeout(async () => {
+          const response = await mtgDataService.addCardToCollection(self.card.id, false);
+          self.card.isOwned = response.data.isOwned;
+          self.card.isFoiled = response.data.isFoiled;
           self.clicks = 0
         }, this.delay);
       } else {
         clearTimeout(this.timer);
-        mtgDataService.addCardToCollection(this.card.id, true);
+        const response = await mtgDataService.addCardToCollection(this.card.id, true);
+        this.card.isOwned = response.data.isOwned;
+        this.card.isFoiled = response.data.isFoiled;
         this.clicks = 0;
       }
     },
