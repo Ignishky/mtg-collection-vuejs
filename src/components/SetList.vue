@@ -1,4 +1,5 @@
 <template>
+  <h1>{{ blockName }}</h1>
   <div class="container">
     <div class="row row-cols-lg-6 g-2 g-lg-2">
       <div v-for="set in sets" v-bind:key="set.code">
@@ -22,6 +23,7 @@ export default defineComponent({
 
   data() {
     return {
+      blockName: '',
       sets: [] as Set[],
     }
   },
@@ -29,6 +31,7 @@ export default defineComponent({
   mounted() {
     mtgDataService.getSets(this.blockCode)
         .then(response => {
+              this.blockName = response.data.blockName;
               this.sets = response.data.sets
             }
         )
@@ -44,6 +47,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+h1 {
+  text-align: center;
+}
+
 .container {
   margin-top: 10px;
   margin-bottom: 10px;

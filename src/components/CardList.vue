@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ setName }} #cards : {{ nbOwnedCards }} ({{ nbOwnedFoiled }}) / {{ cards.length }}</h1>
+  <h1>{{ setName }} - #cards : {{ nbOwnedCards }} ({{ nbOwnedFoiled }}) / {{ cards.length }}</h1>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>

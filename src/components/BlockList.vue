@@ -1,4 +1,5 @@
 <template>
+  <h1>MTG-COLLECTION</h1>
   <div class="container">
     <div class="row row-cols-lg-6 g-2 g-lg-2">
       <div v-for="block in blocks" v-bind:key="block.code">
@@ -43,6 +44,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+h1 {
+  text-align: center;
+}
+
 .container {
   margin-top: 10px;
   margin-bottom: 10px;

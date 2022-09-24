@@ -5,6 +5,7 @@ interface SetsResponse {
 }
 
 interface SetsData {
+    blockName: string,
     sets: Set[]
 }
 
