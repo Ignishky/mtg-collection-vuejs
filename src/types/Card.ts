@@ -1,6 +1,6 @@
 interface Price {
-    eur: string,
-    eur_foil: string
+    eur: number,
+    eur_foil: number
 }
 
 interface Card {

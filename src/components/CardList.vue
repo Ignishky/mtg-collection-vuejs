@@ -1,5 +1,7 @@
 <template>
-  <h1>{{ setName }} - #cards : {{ nbOwnedCards }} ({{ nbOwnedFoiled }}) / {{ cards.length }}</h1>
+  <h1>{{ setName }} - {{ nbOwnedCards }} ({{ nbOwnedFoiled }}) / {{ cards.length }} cards - {{ valueOwned.toFixed(2) }} € / {{
+      totalValue.toFixed(2)
+    }} €</h1>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>
@@ -32,6 +34,21 @@ export default defineComponent({
 
     nbOwnedFoiled() {
       return this.cards.filter(card => card.isFoiled).length;
+    },
+
+    valueOwned() {
+      return this.cards
+          .filter(card => card.isOwned)
+          .map(card => card.price)
+          .map(price => price.eur_foil ? price.eur_foil : price.eur)
+          .reduce((previous, currentValue) => previous + currentValue, 0);
+    },
+
+    totalValue() {
+      return this.cards
+          .map(card => card.price)
+          .map(price => price.eur_foil ? price.eur_foil : price.eur)
+          .reduce((previous, currentValue) => previous + currentValue, 0);
     }
   },
 

@@ -34,11 +34,11 @@ export default defineComponent({
       let price;
       let cardPrice = this.card.price;
       if (cardPrice.eur && cardPrice.eur_foil) {
-        price = `${cardPrice.eur} € / ${cardPrice.eur_foil} €`
+        price = `${cardPrice.eur.toFixed(2)} € / ${cardPrice.eur_foil.toFixed(2)} €`
       } else if (cardPrice.eur) {
-        price = `${cardPrice.eur} €`
+        price = `${cardPrice.eur.toFixed(2)} €`
       } else if (cardPrice.eur_foil) {
-        price = `${cardPrice.eur_foil} €`
+        price = `${cardPrice.eur_foil.toFixed(2)} €`
       } else {
         price = '-'
       }
