@@ -1,7 +1,5 @@
 <template>
-  <h1>{{ setName }} - {{ nbOwnedCards }} ({{ nbOwnedFoiled }}) / {{ cards.length }} cards - {{ valueOwned.toFixed(2) }} € / {{
-      totalValue.toFixed(2)
-    }} €</h1>
+  <h1>{{ setName }} - {{ nbOwned }} ({{ nbOwnedFoiled }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</h1>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>
@@ -23,32 +21,12 @@ export default defineComponent({
   data() {
     return {
       setName: '',
+      nbCards: 0,
+      nbOwned: 0,
+      nbOwnedFoiled: 0,
+      maxValue: 0,
+      ownedValue: 0,
       cards: [] as Card[],
-    }
-  },
-
-  computed: {
-    nbOwnedCards() {
-      return this.cards.filter(card => card.isOwned).length;
-    },
-
-    nbOwnedFoiled() {
-      return this.cards.filter(card => card.isFoiled).length;
-    },
-
-    valueOwned() {
-      return this.cards
-          .filter(card => card.isOwned)
-          .map(card => card.price)
-          .map(price => price.eur_foil ? price.eur_foil : price.eur)
-          .reduce((previous, currentValue) => previous + currentValue, 0);
-    },
-
-    totalValue() {
-      return this.cards
-          .map(card => card.price)
-          .map(price => price.eur_foil ? price.eur_foil : price.eur)
-          .reduce((previous, currentValue) => previous + currentValue, 0);
     }
   },
 
@@ -56,6 +34,11 @@ export default defineComponent({
     mtgDataService.getSetCards(this.setCode)
         .then(response => {
               this.setName = response.data.name;
+              this.nbCards = response.data.nbCards;
+              this.nbOwned = response.data.nbOwned;
+              this.nbOwnedFoiled = response.data.nbOwnedFoil;
+              this.maxValue = response.data.maxValue;
+              this.ownedValue = response.data.ownedValue;
               this.cards = response.data.cards
             }
         )
