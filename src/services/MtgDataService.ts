@@ -17,8 +17,8 @@ class MtgDataService {
         return http.get(`/sets/${setCode}`);
     }
 
-    addCardToCollection(cardId: string, isFoiled: boolean): Promise<ResponseCardData> {
-        return http.put(`/collection/${cardId}`, `{"isFoiled": ${isFoiled}}`)
+    addCardToCollection(cardId: string, isFoil: boolean): Promise<ResponseCardData> {
+        return http.put(`/collection/${cardId}`, `{"isOwnedFoil": ${isFoil}}`)
     }
 }
 

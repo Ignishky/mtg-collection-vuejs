@@ -9,7 +9,7 @@ interface Card {
     image: string,
     price: Price,
     isOwned: boolean,
-    isFoiled: boolean
+    isOwnedFoil: boolean
 }
 
 export default Card

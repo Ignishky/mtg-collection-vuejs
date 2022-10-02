@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :class="{owned: card.isOwned && !card.isFoiled, foiled: card.isFoiled}"
+    <img :class="{owned: card.isOwned && !card.isOwnedFoil, foil: card.isOwnedFoil}"
          :id="card.id" :src="card.image" :alt="card.name" @click="handleClick()"/>
     <div style="text-align: center;">{{ price }}</div>
   </div>
@@ -54,14 +54,14 @@ export default defineComponent({
         this.timer = setTimeout(async () => {
           const response = await mtgDataService.addCardToCollection(self.card.id, false);
           self.card.isOwned = response.data.isOwned;
-          self.card.isFoiled = response.data.isFoiled;
+          self.card.isOwnedFoil = response.data.isOwnedFoil;
           self.clicks = 0
         }, this.delay);
       } else {
         clearTimeout(this.timer);
         const response = await mtgDataService.addCardToCollection(this.card.id, true);
         this.card.isOwned = response.data.isOwned;
-        this.card.isFoiled = response.data.isFoiled;
+        this.card.isOwnedFoil = response.data.isOwnedFoil;
         this.clicks = 0;
       }
     },
@@ -74,7 +74,7 @@ export default defineComponent({
   background: #ffa500;
 }
 
-.foiled {
+.foil {
   background: #228b22;
 }
 

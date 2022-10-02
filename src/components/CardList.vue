@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ setName }} - {{ nbOwned }} ({{ nbOwnedFoiled }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</h1>
+  <h1>{{ setName }} - {{ nbOwned }} ({{ nbOwnedFoil }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</h1>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>
@@ -23,7 +23,7 @@ export default defineComponent({
       setName: '',
       nbCards: 0,
       nbOwned: 0,
-      nbOwnedFoiled: 0,
+      nbOwnedFoil: 0,
       maxValue: 0,
       ownedValue: 0,
       cards: [] as Card[],
@@ -36,7 +36,7 @@ export default defineComponent({
               this.setName = response.data.name;
               this.nbCards = response.data.nbCards;
               this.nbOwned = response.data.nbOwned;
-              this.nbOwnedFoiled = response.data.nbOwnedFoil;
+              this.nbOwnedFoil = response.data.nbOwnedFoil;
               this.maxValue = response.data.maxValue;
               this.ownedValue = response.data.ownedValue;
               this.cards = response.data.cards
