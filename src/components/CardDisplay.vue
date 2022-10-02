@@ -38,7 +38,7 @@ export default defineComponent({
       } else if (cardPrice.eur) {
         price = `${cardPrice.eur.toFixed(2)} €`
       } else if (cardPrice.eur_foil) {
-        price = `${cardPrice.eur_foil.toFixed(2)} €`
+        price = `✨${cardPrice.eur_foil.toFixed(2)} €`
       } else {
         price = '-'
       }
