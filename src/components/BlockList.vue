@@ -64,5 +64,6 @@ img {
   height: 100px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 </style>
