@@ -1,5 +1,8 @@
 <template>
-  <h1>{{ blockName }}</h1>
+  <div class="fixed-top">
+    <h1>{{ blockName }}</h1>
+    <hr>
+  </div>
   <div class="container">
     <div class="row row-cols-lg-6 g-2 g-lg-2">
       <div v-for="set in sets" v-bind:key="set.code">
@@ -47,12 +50,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.fixed-top {
+  background: white;
+}
+
 h1 {
   text-align: center;
 }
 
 .container {
-  margin-top: 10px;
+  margin-top: 90px;
   margin-bottom: 10px;
 }
 

@@ -1,5 +1,8 @@
 <template>
-  <h1>{{ setName }} - {{ nbOwned }} ({{ nbOwnedFoil }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</h1>
+  <div class="fixed-top">
+    <h1>{{ setName }} - {{ nbOwned }} ({{ nbOwnedFoil }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</h1>
+    <hr>
+  </div>
   <div class="container">
     <span v-for="card in cards" v-bind:key="card.id">
       <CardDisplay :card="card"/>
@@ -48,13 +51,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.fixed-top {
+  background: #ffffff;
+}
+
 h1 {
   text-align: center;
 }
 
 .container {
   max-width: 1370px;
-  margin: 10px 50px;
+  margin: 80px 50px;
   display: flex;
   flex-wrap: wrap;
 }
