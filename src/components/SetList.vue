@@ -5,7 +5,7 @@
       <div v-for="set in sets" v-bind:key="set.code">
         <div class="border bg-light" @click="handleClick(set.code)">
           <img :src="set.icon" :alt="set.code">
-          <p>{{ set.name }}</p>
+          <p>{{ set.name }} - {{ set.nbOwned }} / {{ set.nbCards }} </p>
         </div>
       </div>
     </div>
