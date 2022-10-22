@@ -9,7 +9,11 @@
       <div v-for="set in sets" v-bind:key="set.code">
         <div class="border bg-light" @click="handleClick(set.code)">
           <img :src="set.icon" :alt="set.code">
-          <p>{{ set.name }} - {{ set.nbOwned }} ({{ set.nbOwnedFoil }}) / {{ set.nbCards }}</p>
+          <div class="label">
+            <span>{{ set.name }}</span>
+            <br/>
+            <span>{{ set.nbOwned }} ({{ set.nbOwnedFoil }}) / {{ set.nbCards }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -77,7 +81,12 @@ img {
   padding-left: 5px;
   height: 110px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   cursor: pointer;
+}
+
+.label {
+  flex-direction: column;
 }
 </style>
