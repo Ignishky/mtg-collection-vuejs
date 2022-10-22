@@ -12,7 +12,12 @@
           <div class="label">
             <span>{{ set.name }}</span>
             <br/>
-            <span>{{ set.nbOwned }} ({{ set.nbOwnedFoil }}) / {{ set.nbCards }}</span>
+            <div class="progress">
+              <div class="progress-bar bg-warning" role="progressbar" :style="{width:progress()}" aria-valuemin="0"
+                   :aria-valuenow="set.nbOwned-set.nbOwnedFoil" :aria-valuemax="set.nbCards"></div>
+              <div class="progress-bar bg-success" role="progressbar" :style="{width:progressFoil()}" aria-valuemin="0"
+                   :aria-valuenow="set.nbOwnedFoil" :aria-valuemax="set.nbCards"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -55,6 +60,14 @@ export default defineComponent({
   methods: {
     handleClick(code: string) {
       this.$router.push(`/sets/${code}`)
+    },
+
+    progress() {
+      return (this.nbOwned - this.nbOwnedFoil) / this.nbCards * 100 + '%';
+    },
+
+    progressFoil() {
+      return this.nbOwnedFoil / this.nbCards * 100 + '%';
     }
   }
 })
