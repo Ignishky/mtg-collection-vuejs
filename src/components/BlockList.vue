@@ -18,10 +18,10 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import mtgDataService from '@/services/MtgDataService'
-import Set from "@/types/Set";
+import Set from '@/types/Set';
 
 export default defineComponent({
-  name: "BlockList",
+  name: 'BlockList',
 
   data() {
     return {
@@ -48,7 +48,7 @@ export default defineComponent({
 
 <style scoped>
 .fixed-top {
-  background: white;
+  background: #ffffff;
 }
 
 h1 {

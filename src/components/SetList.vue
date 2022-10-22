@@ -1,6 +1,7 @@
 <template>
   <div class="fixed-top">
     <h1>{{ blockName }}</h1>
+    <p>{{ nbOwned }} ({{ nbOwnedFoil }}) / {{ nbCards }} cards</p>
     <hr>
   </div>
   <div class="container">
@@ -8,7 +9,7 @@
       <div v-for="set in sets" v-bind:key="set.code">
         <div class="border bg-light" @click="handleClick(set.code)">
           <img :src="set.icon" :alt="set.code">
-          <p>{{ set.name }} - {{ set.nbOwned }} / {{ set.nbCards }} </p>
+          <p>{{ set.name }} - {{ set.nbOwned }} ({{ set.nbOwnedFoil }}) / {{ set.nbCards }}</p>
         </div>
       </div>
     </div>
@@ -18,15 +19,18 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import mtgDataService from '@/services/MtgDataService'
-import Set from "@/types/Set";
+import Set from '@/types/Set';
 
 export default defineComponent({
-  name: "SetList",
+  name: 'SetList',
   props: ['blockCode'],
 
   data() {
     return {
       blockName: '',
+      nbOwned: 0,
+      nbOwnedFoil: 0,
+      nbCards: 0,
       sets: [] as Set[],
     }
   },
@@ -35,6 +39,9 @@ export default defineComponent({
     mtgDataService.getSets(this.blockCode)
         .then(response => {
               this.blockName = response.data.blockName;
+              this.nbOwned = response.data.nbOwned;
+              this.nbOwnedFoil = response.data.nbOwnedFoil;
+              this.nbCards = response.data.nbCards;
               this.sets = response.data.sets
             }
         )
@@ -51,15 +58,12 @@ export default defineComponent({
 
 <style scoped>
 .fixed-top {
-  background: white;
-}
-
-h1 {
+  background: #ffffff;
   text-align: center;
 }
 
 .container {
-  margin-top: 90px;
+  margin-top: 120px;
   margin-bottom: 10px;
 }
 
@@ -71,7 +75,7 @@ img {
 
 .border {
   padding-left: 5px;
-  height: 100px;
+  height: 110px;
   display: flex;
   align-items: center;
   cursor: pointer;

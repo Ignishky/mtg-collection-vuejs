@@ -1,6 +1,7 @@
 <template>
   <div class="fixed-top">
-    <h1>{{ setName }} - {{ nbOwned }} ({{ nbOwnedFoil }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</h1>
+    <h1>{{ setName }}</h1>
+    <p>{{ nbOwned }} ({{ nbOwnedFoil }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</p>
     <hr>
   </div>
   <div class="container">
@@ -11,13 +12,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
-import mtgDataService from "@/services/MtgDataService";
-import Card from "@/types/Card";
-import CardDisplay from "@/components/CardDisplay.vue";
+import {defineComponent} from 'vue';
+import mtgDataService from '@/services/MtgDataService';
+import Card from '@/types/Card';
+import CardDisplay from '@/components/CardDisplay.vue';
 
 export default defineComponent({
-  name: "CardList",
+  name: 'CardList',
   components: {CardDisplay},
   props: ['setCode'],
 
@@ -53,15 +54,12 @@ export default defineComponent({
 <style scoped>
 .fixed-top {
   background: #ffffff;
-}
-
-h1 {
   text-align: center;
 }
 
 .container {
   max-width: 1370px;
-  margin: 80px 50px;
+  margin: 115px 50px;
   display: flex;
   flex-wrap: wrap;
 }

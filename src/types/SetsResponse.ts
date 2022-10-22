@@ -6,6 +6,9 @@ interface SetsResponse {
 
 interface SetsData {
     blockName: string,
+    nbOwned: number,
+    nbOwnedFoil: number,
+    nbCards: number,
     sets: Set[]
 }
 

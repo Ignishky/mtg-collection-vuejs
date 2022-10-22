@@ -12,7 +12,7 @@ import Card from "@/types/Card";
 import mtgDataService from "@/services/MtgDataService";
 
 export default defineComponent({
-  name: "CardDisplay",
+  name: 'CardDisplay',
 
   data() {
     return {

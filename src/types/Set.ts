@@ -3,7 +3,8 @@ interface Set {
     name: string,
     icon: string,
     nbCards: number,
-    nbOwned: number
+    nbOwned: number,
+    nbOwnedFoil: number
 }
 
 export default Set
