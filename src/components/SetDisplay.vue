@@ -5,10 +5,10 @@
       <span>{{ set.name }}</span>
       <br/>
       <div class="progress">
-        <div class="progress-bar bg-warning" role="progressbar" :style="{width:progress()}" aria-valuemin="0"
-             :aria-valuenow="set.nbOwned-set.nbFoilOwned" :aria-valuemax="set.nbCards"></div>
         <div class="progress-bar bg-success" role="progressbar" :style="{width:progressFoil()}" aria-valuemin="0"
              :aria-valuenow="set.nbFoilOwned" :aria-valuemax="set.nbCards"></div>
+        <div class="progress-bar bg-warning" role="progressbar" :style="{width:progress()}" aria-valuemin="0"
+             :aria-valuenow="set.nbOwned-set.nbFoilOwned" :aria-valuemax="set.nbCards"></div>
       </div>
     </div>
   </div>
