@@ -5,6 +5,9 @@ interface BlocksResponse {
 }
 
 interface BlocksData {
+    nbCards: number,
+    nbOwned: number,
+    nbOwnedFoil: number,
     blocks: Set[]
 }
 
