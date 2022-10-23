@@ -1,10 +1,10 @@
 import Set from "@/types/Set";
 
-interface SetsResponse {
-    data: SetsData
+interface BlockResponse {
+    data: BlockData
 }
 
-interface SetsData {
+interface BlockData {
     blockName: string,
     nbOwned: number,
     nbOwnedFoil: number,
@@ -12,4 +12,4 @@ interface SetsData {
     sets: Set[]
 }
 
-export default SetsResponse
+export default BlockResponse

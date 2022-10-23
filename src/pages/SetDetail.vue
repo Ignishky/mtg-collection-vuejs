@@ -5,7 +5,7 @@
     <hr>
   </div>
   <div class="container">
-    <span v-for="card in cards" v-bind:key="card.id">
+    <span v-for="card in cards" :key="card.id">
       <CardDisplay :card="card"/>
     </span>
   </div>
@@ -18,7 +18,7 @@ import Card from '@/types/Card';
 import CardDisplay from '@/components/CardDisplay.vue';
 
 export default defineComponent({
-  name: 'CardList',
+  name: 'SetDetail',
   components: {CardDisplay},
   props: ['setCode'],
 
