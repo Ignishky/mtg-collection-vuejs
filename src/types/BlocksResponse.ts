@@ -7,7 +7,7 @@ interface BlocksResponse {
 interface BlocksData {
     nbCards: number,
     nbOwned: number,
-    nbOwnedFoil: number,
+    nbFoilOwned: number,
     blocks: Set[]
 }
 
