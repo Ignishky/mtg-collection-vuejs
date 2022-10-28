@@ -1,7 +1,7 @@
 <template>
   <div class="fixed-top">
     <h1>MTG-COLLECTION</h1>
-    <p>{{ nbOwned }} ({{ nbFoilOwned }}) / {{ nbCards }} cards</p>
+    <p>{{ nbOwned }} ({{ nbFullyOwned }}) / {{ nbCards }} cards</p>
     <hr>
   </div>
   <div class="container">
@@ -26,7 +26,7 @@ export default defineComponent({
   data() {
     return {
       nbOwned: 0,
-      nbFoilOwned: 0,
+      nbFullyOwned: 0,
       nbCards: 0,
       blocks: [] as Set[],
     }
@@ -36,7 +36,7 @@ export default defineComponent({
     mtgDataService.getAllBlocks()
         .then(response => {
               this.nbOwned = response.data.nbOwned;
-              this.nbFoilOwned = response.data.nbFoilOwned;
+              this.nbFullyOwned = response.data.nbFullyOwned;
               this.nbCards = response.data.nbCards;
               this.blocks = response.data.blocks
             }

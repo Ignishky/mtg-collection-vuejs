@@ -4,7 +4,7 @@ interface Set {
     icon: string,
     nbCards: number,
     nbOwned: number,
-    nbFoilOwned: number
+    nbFullyOwned: number
 }
 
 export default Set

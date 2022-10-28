@@ -1,7 +1,7 @@
 <template>
   <div class="fixed-top">
     <h1>{{ setName }}</h1>
-    <p>{{ nbOwned }} ({{ nbFoilOwned }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ maxValue }} €</p>
+    <p>{{ nbOwned }} ({{ nbFullyOwned }}) / {{ nbCards }} cards - {{ ownedValue }} € / {{ fullValue }} €</p>
     <hr>
   </div>
   <div class="container">
@@ -27,8 +27,8 @@ export default defineComponent({
       setName: '',
       nbCards: 0,
       nbOwned: 0,
-      nbFoilOwned: 0,
-      maxValue: 0,
+      nbFullyOwned: 0,
+      fullValue: 0,
       ownedValue: 0,
       cards: [] as Card[],
     }
@@ -40,8 +40,8 @@ export default defineComponent({
               this.setName = response.data.name;
               this.nbCards = response.data.nbCards;
               this.nbOwned = response.data.nbOwned;
-              this.nbFoilOwned = response.data.nbFoilOwned;
-              this.maxValue = response.data.maxValue;
+              this.nbFullyOwned = response.data.nbFullyOwned;
+              this.fullValue = response.data.fullValue;
               this.ownedValue = response.data.ownedValue;
               this.cards = response.data.cards
             }
@@ -58,7 +58,7 @@ export default defineComponent({
 }
 
 .container {
-  max-width: 1370px;
+  max-width: 1750px;
   margin: 115px 50px;
   display: flex;
   flex-wrap: wrap;

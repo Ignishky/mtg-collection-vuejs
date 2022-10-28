@@ -8,8 +8,8 @@ interface SetData {
     name: string,
     nbCards: number,
     nbOwned: number,
-    nbFoilOwned: number,
-    maxValue: number,
+    nbFullyOwned: number,
+    fullValue: number,
     ownedValue: number,
     cards: Card[]
 }

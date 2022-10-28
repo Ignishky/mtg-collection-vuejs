@@ -6,9 +6,9 @@
       <br/>
       <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" :style="{width:progressFoil()}" aria-valuemin="0"
-             :aria-valuenow="set.nbFoilOwned" :aria-valuemax="set.nbCards"></div>
+             :aria-valuenow="set.nbFullyOwned" :aria-valuemax="set.nbCards"></div>
         <div class="progress-bar bg-warning" role="progressbar" :style="{width:progress()}" aria-valuemin="0"
-             :aria-valuenow="set.nbOwned-set.nbFoilOwned" :aria-valuemax="set.nbCards"></div>
+             :aria-valuenow="set.nbOwned-set.nbFullyOwned" :aria-valuemax="set.nbCards"></div>
       </div>
     </div>
   </div>
@@ -38,11 +38,11 @@ export default defineComponent({
     },
 
     progress() {
-      return (this.set.nbOwned - this.set.nbFoilOwned) / this.set.nbCards * 100 + '%';
+      return (this.set.nbOwned - this.set.nbFullyOwned) / this.set.nbCards * 100 + '%';
     },
 
     progressFoil() {
-      return this.set.nbFoilOwned / this.set.nbCards * 100 + '%';
+      return this.set.nbFullyOwned / this.set.nbCards * 100 + '%';
     }
   }
 })

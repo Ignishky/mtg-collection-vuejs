@@ -8,8 +8,8 @@ interface Card {
     name: string,
     image: string,
     price: Price,
-    isOwned: boolean,
-    isOwnedFoil: boolean
+    finishes: string[],
+    ownState: string,
 }
 
 export default Card

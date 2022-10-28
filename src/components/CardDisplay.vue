@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :class="{owned: card.isOwned && !card.isOwnedFoil, foil: card.isOwnedFoil}"
+    <img :class="{ partial: isPartial, full: isFull }"
          :id="card.id" :src="card.image" :alt="card.name" @click="handleClick()"/>
     <div style="text-align: center;">{{ price }}</div>
   </div>
@@ -30,17 +30,28 @@ export default defineComponent({
   },
 
   computed: {
+    isPartial() {
+      return this.card.ownState === 'PARTIAL';
+    },
+
+    isFull() {
+      return this.card.ownState === 'FULL';
+    },
+
     price() {
       let price;
       let cardPrice = this.card.price;
-      if (cardPrice.eur && cardPrice.eur_foil) {
-        price = `${cardPrice.eur.toFixed(2)} € / ${cardPrice.eur_foil.toFixed(2)} €`
-      } else if (cardPrice.eur) {
-        price = `${cardPrice.eur.toFixed(2)} €`
-      } else if (cardPrice.eur_foil) {
-        price = `✨${cardPrice.eur_foil.toFixed(2)} €`
+      let nonFoilPrice = cardPrice.eur ? `${cardPrice.eur.toFixed(2)} €` : "-";
+      let foilPrice = cardPrice.eur_foil ? `✨ ${cardPrice.eur_foil.toFixed(2)} €` : "-";
+
+      let finishes = this.card.finishes;
+
+      if (finishes.includes('NON_FOIL') && finishes.includes('FOIL')) {
+        price = `${nonFoilPrice} / ${foilPrice}`
+      } else if (finishes.includes('NON_FOIL')) {
+        price = nonFoilPrice
       } else {
-        price = '-'
+        price = foilPrice
       }
       return price;
     },
@@ -53,15 +64,13 @@ export default defineComponent({
         const self = this;
         this.timer = setTimeout(async () => {
           const response = await mtgDataService.addCardToCollection(self.card.id, false);
-          self.card.isOwned = response.data.isOwned;
-          self.card.isOwnedFoil = response.data.isOwnedFoil;
+          self.card.ownState = response.data.ownState;
           self.clicks = 0
         }, this.delay);
       } else {
         clearTimeout(this.timer);
         const response = await mtgDataService.addCardToCollection(this.card.id, true);
-        this.card.isOwned = response.data.isOwned;
-        this.card.isOwnedFoil = response.data.isOwnedFoil;
+        this.card.ownState = response.data.ownState;
         this.clicks = 0;
       }
     },
@@ -70,18 +79,18 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.owned {
+.partial {
   background: #ffa500;
 }
 
-.foil {
+.full {
   background: #228b22;
 }
 
 img {
   background: #ffffff;
   padding: 5px;
-  height: 200px;
+  height: 250px;
   cursor: pointer;
 }
 </style>

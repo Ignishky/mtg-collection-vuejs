@@ -1,7 +1,7 @@
 <template>
   <div class="fixed-top">
     <h1>{{ blockName }}</h1>
-    <p>{{ nbOwned }} ({{ nbFoilOwned }}) / {{ nbCards }} cards</p>
+    <p>{{ nbOwned }} ({{ nbFullyOwned }}) / {{ nbCards }} cards</p>
     <hr>
   </div>
   <div class="container">
@@ -28,7 +28,7 @@ export default defineComponent({
     return {
       blockName: '',
       nbOwned: 0,
-      nbFoilOwned: 0,
+      nbFullyOwned: 0,
       nbCards: 0,
       sets: [] as Set[],
     }
@@ -39,7 +39,7 @@ export default defineComponent({
         .then(response => {
               this.blockName = response.data.blockName;
               this.nbOwned = response.data.nbOwned;
-              this.nbFoilOwned = response.data.nbFoilOwned;
+              this.nbFullyOwned = response.data.nbFullyOwned;
               this.nbCards = response.data.nbCards;
               this.sets = response.data.sets
             }
